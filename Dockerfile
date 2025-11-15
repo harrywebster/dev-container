@@ -47,6 +47,7 @@ RUN useradd -m -s /bin/bash developer && \
 RUN mkdir -p /home/developer/.ssh && \
     chmod 700 /home/developer/.ssh
 
+COPY motd /etc/motd
 COPY developer.pub /home/developer/.ssh/authorized_keys
 
 RUN chown -R developer:developer /home/developer/.ssh && \
