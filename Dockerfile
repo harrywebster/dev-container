@@ -66,15 +66,12 @@ RUN \
     curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && \
     apt install -y nodejs
 
-RUN \
-    sudo su - developer -c "mkdir -p ~/.npm-global" && \
-    sudo su - developer -c "npm config set prefix ~/.npm-global" && \
-    sudo su - developer -c "echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc" && \
-    sudo su - developer -c "source ~/.bashrc" && \
-    sudo su - developer -c "npm install -g @anthropic-ai/claude-code"
+RUN sudo su - developer -c "echo 'export PATH=~/project/.npm-global/bin:$PATH' >> ~/.bashrc"
 
 # Expose SSH port
 EXPOSE 22
+
+COPY install.sh /usr/local/bin/setup-ai
 
 # Start sshd
 CMD ["/usr/sbin/sshd", "-D"]
