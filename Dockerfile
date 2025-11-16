@@ -43,15 +43,12 @@ RUN mkdir -p /var/run/sshd
 RUN useradd -m -s /bin/bash developer && \
     echo "developer ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Set up SSH for developer user
-RUN mkdir -p /home/developer/.ssh && \
-    chmod 700 /home/developer/.ssh
-
 COPY motd /etc/motd
-COPY developer.pub /home/developer/.ssh/authorized_keys
+COPY .ssh /home/developer/.ssh    
 
 RUN chown -R developer:developer /home/developer/.ssh && \
-    chmod 600 /home/developer/.ssh/authorized_keys
+    chmod 600 /home/developer/.ssh/authorized_keys && \
+    chmod 700 /home/developer/.ssh
 
 # Configure SSH: key-only authentication, no passwords
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config && \
