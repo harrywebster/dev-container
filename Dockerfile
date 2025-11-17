@@ -4,6 +4,7 @@ FROM debian:stable-slim
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates \
+        docker.io \
         curl \
         wget \
         git \
