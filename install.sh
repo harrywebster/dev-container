@@ -5,3 +5,4 @@ npm config set prefix ~/project/.npm-global
 source ~/.bashrc
 npm install -g @anthropic-ai/claude-code
 npm install -g opencode-ai
+npm install -g @google/gemini-cli
