@@ -20,11 +20,13 @@ Connect to the container:
 ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 developer@localhost -p 2222
 ```
 
-## Install persistant packages
+## On first boot, install persistant packages
 
 *You only need to run this once per physical machine.*
 
 ```
+sudo chmod 666 /var/run/docker.sock
+sudo chown -R developer:developer /home/developer/project
 seutp-ai
 ```
 
